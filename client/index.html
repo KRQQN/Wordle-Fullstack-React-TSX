@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
   </head>
-  <body>
+  <body class="bg-yellow-200 w-screen h-screen">
+
+    <header class="bg-yellow-300">
+      <h1 class="text-6xl py-5 text-center font-extrabold font-sans text-transparent bg-clip-text bg-gradient-to-br from-orange-400 to-red-700">WORDLE</h1>
+      <ul class="flex place-content-evenly">
+        <li class="border-2 border-transparent hover:border-black drop-shadow-md w-1/2 text-center bg-orange-400 "><a href="">About</a></li>
+        <li class="border-2 border-transparent hover:border-black drop-shadow-md w-1/2 text-center bg-orange-400 "><a href="">High-score</a></li>
+      </ul>
+    </header>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
