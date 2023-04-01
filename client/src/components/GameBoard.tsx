@@ -1,14 +1,18 @@
-interface Props {
-  wordLength: number;
-}
+import React from 'react'
+import { Guess } from "./Guess"
 
-export function GameBoard({ wordLength }: Props) {
-  return (
-    <div className="flex items-center justify-center">
-      {new Array(wordLength).fill(0).map((_, i) => (
-        <div className="mx-1.5" 
-        key={i}>[ ]</div>
-      ))}
-    </div>
-  );
+interface Props {
+    wordLength: number;
+    guess: string
+    word: string
+  }
+
+
+export default function GameBoard({ wordLength, guess, word }: Props) {
+  return 
+  
+  
+  (
+    <Guess wordLength={wordLength} guess="guess" word="tests" />
+  )
 }
