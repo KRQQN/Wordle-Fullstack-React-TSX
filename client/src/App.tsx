@@ -1,19 +1,22 @@
 import { useState } from "react";
 import "./App.css";
 
-/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons"; */
-
 import { GameBoard } from "./components/GameBoard";
+import { WordLength } from "./components/WordLength";
 
-
-
-
-const App: React.FC = () => {
-  
+function App() {
+  const [wordLength, setWordLength] = useState<number>(1);
 
   return (
-    <GameBoard /* onChange={} *//>
+    <>
+      <WordLength handleChange={(wl: number) => setWordLength(wl)} />
+      <GameBoard wordLength={wordLength} />
+      <GameBoard wordLength={wordLength} />
+      <GameBoard wordLength={wordLength} />
+      <GameBoard wordLength={wordLength} />
+      <GameBoard wordLength={wordLength} />
+      <GameBoard wordLength={wordLength} />
+    </>
   );
 }
 
