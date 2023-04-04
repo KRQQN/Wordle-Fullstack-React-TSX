@@ -15,7 +15,7 @@ export function Guess({ wordLength, guess, word }: Props) {
 
         return (
           <div
-            className={`m-1 h-16 w-16 text-4xl font-bold ${bg} flex items-center justify-center`}
+            className={`${bg} m-1 h-16 w-16 text-4xl font-bold flex items-center justify-center`}
             key={i}
           >
             {guess[i]}

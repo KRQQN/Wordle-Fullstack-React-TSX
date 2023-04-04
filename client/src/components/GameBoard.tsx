@@ -1,5 +1,7 @@
-import React from 'react'
+/* import React from 'react'
 import { Guess } from "./Guess"
+
+//! mighth not need tbh
 
 interface Props {
     wordLength: number;
@@ -16,3 +18,4 @@ export default function GameBoard({ wordLength, guess, word }: Props) {
     <Guess wordLength={wordLength} guess="guess" word="tests" />
   )
 }
+ */
