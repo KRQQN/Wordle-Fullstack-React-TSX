@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Guess } from "./components/Guess";
-import { WordOptions } from "./components/ChangeWordLength";
+import { WordOptions } from "./components/WordOptions";
 import loadWordPref from "./tsx/loadWordPref";
 import "./App.css";
 
@@ -12,6 +12,7 @@ function App() {
     loadWordPref(wordLength, reccuringChars);
     //TODO: add reccuringChars option in wordOption component
   })
+  //TODO: change handleChange function of wordOption component
   //TODO: render guessrows less repetetive
   return (
     <>
