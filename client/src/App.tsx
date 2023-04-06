@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { Guess } from "./components/Guess";
-import { ChangeWordLength } from "./components/ChangeWordLength";
+import { WordOptions } from "./components/ChangeWordLength";
 import loadWordPref from "./tsx/loadWordPref";
 import "./App.css";
 
 function App() {
-  const [wordLength, setWordLength] = useState<number>(5);
+  const [wordLength, setWordLength] = useState(5);
+  const [reccuringChars, setReccurringChars] = useState(true)
   
   useEffect(() => {
-    loadWordPref(wordLength  /* repeatable letters, add state */);
+    loadWordPref(wordLength, reccuringChars);
+    //TODO: add reccuringChars option in wordOption component
   })
   //TODO: render guessrows less repetetive
   return (
     <>
-      <ChangeWordLength wordLength={wordLength} handleChange={(wl: number) => setWordLength(wl)} />
+      <WordOptions wordLength={wordLength} handleChange={(wl: number) => setWordLength(wl)} />
       <Guess wordLength={wordLength} guess="guess" word="tests" />
       <Guess wordLength={wordLength} guess="leech" word="tests" />
       <Guess wordLength={wordLength} guess="tests" word="tests" />

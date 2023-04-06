@@ -8,7 +8,7 @@ interface Props {
   handleChange: (wl: number) => void;
 }
 
-export function ChangeWordLength({ wordLength, handleChange }: Props) {
+export function WordOptions({ wordLength, handleChange }: Props) {
   return (
     <>
       <h1>Word Length</h1>
