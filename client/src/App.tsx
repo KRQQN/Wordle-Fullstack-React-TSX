@@ -8,9 +8,9 @@ function App() {
   const [wordLength, setWordLength] = useState<number>(5);
   
   useEffect(() => {
-    loadWordPref(wordLength  /* repeatable letters */);
+    loadWordPref(wordLength  /* repeatable letters, add state */);
   })
-
+  //TODO: render guessrows less repetetive
   return (
     <>
       <ChangeWordLength wordLength={wordLength} handleChange={(wl: number) => setWordLength(wl)} />
