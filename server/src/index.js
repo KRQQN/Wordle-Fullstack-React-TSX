@@ -12,7 +12,6 @@ app.set("view engine", "ejs");
 app.use("/static", express.static("./static")); */
 
 app.get("/", (req, res) => {
-  console.log("hej");
   res.status(200);
 });
 
@@ -20,15 +19,15 @@ app.get("/api/wordOptions", (req, res) => {
   //TODO: fix fetch to include reccuringChars
 
   const filteredWords =
-    req.query.reccuringChars === "true"
+    req.query.recurringChars === "true"
       ? words.filter((word) => word.length == req.query.wordLength)
       : words.filter(
           (word) => word.length == req.query.wordLength && !CharsReccuring(word)
         );
 
-  res.status(200).send({
-    word: filteredWords[Math.floor(Math.random() * filteredWords.length)],
-  });
+  res
+    .status(200)
+    .json(filteredWords[Math.floor(Math.random() * filteredWords.length)]);
 });
 
 app.get("/highScores", async (req, res) => {

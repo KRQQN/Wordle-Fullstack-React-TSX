@@ -5,13 +5,10 @@ interface Props {
 }
 
 export function Guess({ wordLength, guess, word }: Props) {
-  
   return (
     <div className="flex items-center justify-center">
-      {new Array(wordLength).fill(0).map((_: string, i: number) => {
-        const bg = guess[i] === word[i] 
-        ? "bg-green-600" 
-        : "bg-orange-400";
+      {new Array(word.length).fill(0).map((_: string, i: number) => {
+        const bg = guess[i] === word[i] ? "bg-green-600" : "bg-orange-400";
 
         return (
           <div
@@ -24,6 +21,4 @@ export function Guess({ wordLength, guess, word }: Props) {
       })}
     </div>
   );
-
-
 }

@@ -1,6 +1,10 @@
-export default async function loadWordPref(wordLength: number, reccuringChars: boolean) {
-  //TODO: Add multiple letters option
-
-  const res = await fetch(`api/wordOptions?wordLength=${wordLength}&reccuringChars=${reccuringChars}`);
-  const data = await res.json(/* word */);
- }
+export default async function loadWordPref(
+  wordLength: number,
+  recurringChars: boolean
+) {
+  const res = await fetch(
+    `/api/wordOptions?wordLength=${wordLength}&recurringChars=${recurringChars}`
+  );
+  const data = await res.json();
+  return data;
+}
