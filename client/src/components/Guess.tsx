@@ -8,7 +8,9 @@ export function Guess({ wordLength, guess, word }: Props) {
   return (
     <div className="flex items-center justify-center">
       {new Array(word.length).fill(0).map((_: string, i: number) => {
-        const bg = guess[i] === word[i] ? "bg-green-600" : "bg-orange-400";
+        const bg = guess[i] === word[i] 
+        ? "bg-green-600" 
+        : "bg-orange-400";
 
         return (
           <div

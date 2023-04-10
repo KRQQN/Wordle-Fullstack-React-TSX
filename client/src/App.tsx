@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Guess } from "./components/Guess";
 import { WordOptions } from "./components/WordOptions";
 import loadWordPref from "./tsx/loadWordPref";
+import Game from "./tsx/GameLogic";
 import "./App.css";
 
 function App() {
@@ -11,10 +12,9 @@ function App() {
 
   useEffect(() => {
     loadWordPref(wordLength, reccuringChars).then((data) => setWord(data));
-    console.log(word);
   }, [wordLength, reccuringChars]);
+  console.log(word);
 
-  //TODO: render guessrows less repetetive
   return (
     <>
       <WordOptions
@@ -22,12 +22,18 @@ function App() {
         handleWordLengthChange={(wl: number) => setWordLength(wl)}
         handleRecurringCharsChange={(rc: boolean) => setReccuringChars(rc)}
       />
-      <Guess wordLength={wordLength} guess="cyckla" word={word} />
-      <Guess wordLength={wordLength} guess="fiskar" word={word} />
-      <Guess wordLength={wordLength} guess="ostron" word={word} />
-      <Guess wordLength={wordLength} guess={word} word={word} />
-      <Guess wordLength={wordLength} guess="" word={word} />
-      <Guess wordLength={wordLength} guess="" word={word} />
+
+      {new Array(6).fill("").map((_: string, i: number) => (
+        <Guess
+          wordLength={wordLength}
+          guess={Game.guesses[i] || ""}
+          word={word}
+        />
+      ))}
+
+      { /*TODO: remove p-tags*/ }
+      <p className="text-2xl mt-6">guessed words: {Game.guesses.join(" ")}</p>
+      <p className="text-4xl font-extrabold" > correct word: {word}</p>
     </>
   );
 }

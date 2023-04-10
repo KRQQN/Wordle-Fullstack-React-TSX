@@ -20,9 +20,9 @@ app.get("/api/wordOptions", (req, res) => {
 
   const filteredWords =
     req.query.recurringChars === "true"
-      ? words.filter((word) => word.length == req.query.wordLength)
+      ? words.filter((word) => word.length === parseInt(req.query.wordLength))
       : words.filter(
-          (word) => word.length == req.query.wordLength && !CharsReccuring(word)
+          (word) => word.length === parseInt(req.query.wordLength) && !CharsReccuring(word)
         );
 
   res
