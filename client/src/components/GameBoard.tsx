@@ -1,21 +1,31 @@
-/* import React from 'react'
-import { Guess } from "./Guess"
-
-//! mighth not need tbh
+import { useState } from "react";
+import { Guess } from "./Guess";
+import { keyEvents } from "./GameLogic"
 
 interface Props {
-    wordLength: number;
-    guess: string
-    word: string
-  }
-
-
-export default function GameBoard({ wordLength, guess, word }: Props) {
-  return 
-  
-  
-  (
-    <Guess wordLength={wordLength} guess="guess" word="tests" />
-  )
+  guess: string;
+  word: string;
 }
- */
+
+
+export function GameBoard({ guess, word }: Props) {
+  const [guesses, setGuesses] = useState<string[]>([])
+  const [win, setWin] = useState(false)
+  const [lost, setLost] = useState(false)
+  
+  window.addEventListener("keyup", keyEvents)
+  
+  return (
+    <>
+      {new Array(6).fill("").map((_: string, i: number) => (
+        <Guess
+          wordLength={word.length}
+          guess={guess}
+          word={word}
+          key={i}
+        />
+      ))}
+    </>
+  );
+}
+

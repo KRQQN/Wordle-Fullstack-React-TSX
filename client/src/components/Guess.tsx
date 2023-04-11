@@ -4,7 +4,7 @@ interface Props {
   word: string;
 }
 
-export function Guess({ wordLength, guess, word }: Props) {
+export function Guess({ guess, word }: Props) {
   return (
     <div className="flex items-center justify-center">
       {new Array(word.length).fill(0).map((_: string, i: number) => {

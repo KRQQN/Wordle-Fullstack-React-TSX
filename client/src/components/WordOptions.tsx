@@ -20,6 +20,7 @@ export function WordOptions({
       <div className="mb-2 flex justify-center">
         <button
           className="w-20 leading-none rounded-sm font-extrabold text-2xl bg-orange-400"
+          type="button"
           onClick={() => {
             handleWordLengthChange(wordLength - 1);
           }}
@@ -29,6 +30,7 @@ export function WordOptions({
         <p className="w-12 bg-white font-bold text-lg">{wordLength}</p>
         <button
           className="w-20  rounded-sm  bg-orange-400 flex items-center justify-center "
+          type="button"
           onClick={() => {
             handleWordLengthChange(wordLength + 1);
           }}
