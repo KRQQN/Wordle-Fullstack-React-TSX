@@ -5,14 +5,14 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   wordLength: number;
-  handleWordLengthChange: (wl: number) => void;
-  handleRecurringCharsChange: (rc: boolean) => void;
+  onWordLengthChange: (wl: number) => void;
+  onRecurringCharsChange: (rc: boolean) => void;
 }
 
 export function WordOptions({
   wordLength,
-  handleWordLengthChange,
-  handleRecurringCharsChange,
+  onWordLengthChange,
+  onRecurringCharsChange,
 }: Props) {
   return (
     <>
@@ -22,7 +22,7 @@ export function WordOptions({
           className="w-20 leading-none rounded-sm font-extrabold text-2xl bg-orange-400"
           type="button"
           onClick={() => {
-            handleWordLengthChange(wordLength - 1);
+            onWordLengthChange(wordLength - 1);
           }}
         >
           <FontAwesomeIcon icon={faMinus} />
@@ -32,7 +32,7 @@ export function WordOptions({
           className="w-20  rounded-sm  bg-orange-400 flex items-center justify-center "
           type="button"
           onClick={() => {
-            handleWordLengthChange(wordLength + 1);
+            onWordLengthChange(wordLength + 1);
           }}
         >
           <FontAwesomeIcon icon={faPlus} className="text-lg" />
@@ -45,7 +45,7 @@ export function WordOptions({
           type="checkbox"
           id="cb"
           onChange={(ev) => {
-            handleRecurringCharsChange(ev.target.checked);
+            onRecurringCharsChange(ev.target.checked);
           }}
         />
         <label className="text-xl font-semibold" htmlFor="cb">

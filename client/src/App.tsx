@@ -23,8 +23,8 @@ function App() {
     {/* WordOptions innehåller 2buttons & en checkbox*/}
       <WordOptions
         wordLength={wordLength}
-        handleWordLengthChange={(wl: number) => setWordLength(wl)}
-        handleRecurringCharsChange={(rc: boolean) => setReccuringChars(rc)}
+        onWordLengthChange={(wl: number) => setWordLength(wl)}
+        onRecurringCharsChange={(rc: boolean) => setReccuringChars(rc)}
       />
 
       
