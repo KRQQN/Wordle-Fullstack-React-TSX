@@ -30,20 +30,7 @@ function App() {
       
       <GameBoard guess="money" word={word}/>
 
-
-      {/* {new Array(6).fill("").map((_: string, i: number) => (
-        <Guess
-          wordLength={wordLength}
-          guess={Game.guesses[i] || ""}
-          word={word}
-          key={i}
-        />
-      ))} */}
-
-
-
       { /*TODO: remove p-tags*/ }
-      <p className="text-2xl mt-6">guessed words: </p>
       <p className="text-4xl font-extrabold" > correct word: {word}</p>
     </>
   );
