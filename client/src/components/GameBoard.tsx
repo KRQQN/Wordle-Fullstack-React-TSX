@@ -16,28 +16,24 @@ export function GameBoard({ guess, word}: Props) {
   
   
   useEffect(() => {
-    // add currGuess state : string. on keyup add char to string 
-    // if keyup === enter && currGuess.lenth == word.length. 
-    //append -> guesses
-    //ssfdddds
     const keyEvents: (event: KeyboardEvent) => void = (ev) => {
       
       if(ev.key.length === 1 && currGuess.length < word.length){
-        setCurrGuess((currGuess) => currGuess.concat(ev.key))
+        setCurrGuess( currGuess.concat(ev.key))
         console.log(currGuess + ev.key)
       }
 
       if(ev.key === "Enter" && currGuess.length === word.length) {
-        setGuesses( (guesses) => [...guesses, currGuess])
+        setGuesses([...guesses, currGuess])
         setCurrGuess("")
-        console.log("guesses: " + guesses)
+        console.log("guesses: " + guesses.join(",").toString())
       }
     }
-    //
     window.addEventListener("keyup", keyEvents)
     return () => {
       window.removeEventListener("keyup", keyEvents)
     }
+
   }, [guesses, currGuess])
   
  
@@ -52,7 +48,8 @@ export function GameBoard({ guess, word}: Props) {
           word={word}
           key={i}
         />
-      ))}
+        ))}
+        <p className="text-2xl mt-3">{"Guessed words: " + guesses.join(",")}</p>
     </>
   );
 }
