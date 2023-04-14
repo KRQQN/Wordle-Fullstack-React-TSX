@@ -1,55 +1,73 @@
 import { useEffect, useState } from "react";
 import { Guess } from "./Guess";
 
-
 interface Props {
-  guess: string;
   word: string;
 }
 
-export function GameBoard({ guess, word}: Props) {
+export function GameBoard({ word }: Props) {
+  const [guesses, setGuesses] = useState<
+    { word: string; submitted: boolean }[]>([]);
+  const [guess, setGuess] = useState({ word: "", submitted: false });
+  const [win, setWin] = useState(false);
+  const [lost, setLost] = useState(false);
+  let hasBeenUsed = false;
 
-  const [guesses, setGuesses] = useState<string[]>([])
-  const [currGuess, setCurrGuess] = useState("")
-  const [win, setWin] = useState(false)
-  const [lost, setLost] = useState(false)
-  
-  
   useEffect(() => {
     const keyEvents: (event: KeyboardEvent) => void = (ev) => {
-      
-      if(ev.key.length === 1 && currGuess.length < word.length){
-        setCurrGuess( currGuess.concat(ev.key))
-        console.log(currGuess + ev.key)
+      if (ev.key.length === 1 && guess.word.length < word.length) {
+        setGuess({
+          word: guess.word.concat(ev.key.toLocaleLowerCase()),
+          submitted: false,
+        });
+        console.log(guess.word + ev.key);
       }
 
-      if(ev.key === "Enter" && currGuess.length === word.length) {
-        setGuesses([...guesses, currGuess])
-        setCurrGuess("")
-        console.log("guesses: " + guesses.join(",").toString())
+      if (ev.key === "Enter" && guess.word.length === word.length) {
+        setGuesses([...guesses, { word: guess.word, submitted: true }]);
+        setGuess({ word: "", submitted: false });
       }
-    }
-    window.addEventListener("keyup", keyEvents)
+
+      if (ev.key === "Escape") {
+        setGuesses([]);
+      }
+
+      if (ev.key === "Backspace") {
+        console.log(ev.key);
+        setGuess({ word: guess.word.slice(0, -1), submitted: false });
+      }
+    };
+
+    window.addEventListener("keyup", keyEvents);
     return () => {
-      window.removeEventListener("keyup", keyEvents)
-    }
+      window.removeEventListener("keyup", keyEvents);
+    };
+  }, [guess, guesses]);
 
-  }, [guesses, currGuess])
-  
- 
-  
   return (
     <>
-      {new Array(6).fill("").map((_: string, i: number) => (
-        <Guess
-          wordLength={word.length}
-          preGuess={currGuess}
-          guess={guesses[i] || ""}
-          word={word}
-          key={i}
-        />
-        ))}
-        <p className="text-2xl mt-3">{"Guessed words: " + guesses.join(",")}</p>
+      {new Array(6).fill("").map((_: string, i: number) => {
+        let fallback: { word: string; submitted: boolean } = {
+          word: "",
+          submitted: false,
+        };
+        if (!hasBeenUsed && i >= guesses.length) {
+          hasBeenUsed = true;
+          fallback = { word: guess.word, submitted: false };
+        }
+
+        return (
+          <Guess
+            guessCount={guesses.length}
+            guess={guesses[i] || fallback}
+            word={word}
+            key={i}
+          />
+        );
+      })}
+      <p className="text-2xl mt-3">
+        {"Guessed words: " + guesses.map((el) => el.word).join(",")}
+      </p>
     </>
   );
 }
