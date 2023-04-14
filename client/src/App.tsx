@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-    {/* WordOptions innehåller 2buttons & en checkbox*/}
+    {/* WordOptions innehåller 2buttons & en dcheckbox*/}
       <WordOptions
         wordLength={wordLength}
         onWordLengthChange={(wl: number) => setWordLength(wl)}
@@ -28,7 +28,7 @@ function App() {
       />
 
       
-      <GameBoard guess="money" word={word}/>
+      <GameBoard word={word}/>
 
       { /*TODO: remove p-tags*/ }
       <p className="text-4xl font-extrabold" > correct word: {word}</p>
