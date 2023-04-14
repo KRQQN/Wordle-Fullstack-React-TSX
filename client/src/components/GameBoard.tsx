@@ -4,10 +4,8 @@ import { Guess } from "./Guess";
 interface Props {
   word: string;
 }
-
 export function GameBoard({ word }: Props) {
-  const [guesses, setGuesses] = useState<
-    { word: string; submitted: boolean }[]>([]);
+  const [guesses, setGuesses] = useState<{ word: string; submitted: boolean }[]>([]);
   const [guess, setGuess] = useState({ word: "", submitted: false });
   const [win, setWin] = useState(false);
   const [lost, setLost] = useState(false);
