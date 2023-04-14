@@ -3,16 +3,24 @@ import { Guess } from "./Guess";
 
 interface Props {
   word: string;
+  onGuessReset: () => void //TODO: remove this later
+  guesses: { word: string; submitted: boolean }[]
+  setGuesses: (guesses: { word: string; submitted: boolean }[]) => void;
+
 }
-export function GameBoard({ word }: Props) {
-  const [guesses, setGuesses] = useState<{ word: string; submitted: boolean }[]>([]);
+//
+export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
+
   const [guess, setGuess] = useState({ word: "", submitted: false });
+  
   const [win, setWin] = useState(false);
   const [lost, setLost] = useState(false);
   let hasBeenUsed = false;
 
   useEffect(() => {
+    
     const keyEvents: (event: KeyboardEvent) => void = (ev) => {
+
       if (ev.key.length === 1 && guess.word.length < word.length) {
         setGuess({
           word: guess.word.concat(ev.key.toLocaleLowerCase()),
@@ -24,9 +32,9 @@ export function GameBoard({ word }: Props) {
         setGuesses([...guesses, { word: guess.word, submitted: true }]);
         setGuess({ word: "", submitted: false });
       }
-
+      //TODO: remove this later
       if (ev.key === "Escape") {
-        setGuesses([]);
+        onGuessReset()
       }
 
       if (ev.key === "Backspace") {

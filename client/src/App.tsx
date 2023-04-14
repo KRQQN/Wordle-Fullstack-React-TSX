@@ -6,6 +6,7 @@ import "./App.css";
 
 function App() {
   const [wordLength, setWordLength] = useState(5);
+  const [guesses, setGuesses] = useState<{ word: string; submitted: boolean }[]>([]);
   const [reccuringChars, setReccuringChars] = useState(false);
   const [word, setWord] = useState("");
   
@@ -14,24 +15,30 @@ function App() {
 
   useEffect(() => {
     loadWordPref(wordLength, reccuringChars).then((data) => setWord(data));
+    setGuesses([])
   }, [wordLength, reccuringChars]);
   
+  //TODO: remove this later
+  const handleGuessReset = () => {
+    setGuesses([]);
+  };
   
 
   return (
     <>
-    {/* WordOptions innehåller 2buttons & en dcheckbox*/}
       <WordOptions
         wordLength={wordLength}
         onWordLengthChange={(wl: number) => setWordLength(wl)}
         onRecurringCharsChange={(rc: boolean) => setReccuringChars(rc)}
       />
 
-      
-      <GameBoard word={word}/>
+      <GameBoard word={word} onGuessReset={handleGuessReset} guesses={guesses} setGuesses={setGuesses}  />
+
+
+
 
       { /*TODO: remove p-tags*/ }
-      <p className="text-4xl font-extrabold" > correct word: {word}</p>
+      <p className="text-4xl font-extrabold" > correct word: {guesses.length > 4 && word}</p>
     </>
   );
 }
