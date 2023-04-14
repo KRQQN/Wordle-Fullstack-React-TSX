@@ -20,7 +20,6 @@ export function GameBoard({ word }: Props) {
           word: guess.word.concat(ev.key.toLocaleLowerCase()),
           submitted: false,
         });
-        console.log(guess.word + ev.key);
       }
 
       if (ev.key === "Enter" && guess.word.length === word.length) {
@@ -33,7 +32,6 @@ export function GameBoard({ word }: Props) {
       }
 
       if (ev.key === "Backspace") {
-        console.log(ev.key);
         setGuess({ word: guess.word.slice(0, -1), submitted: false });
       }
     };
@@ -58,7 +56,6 @@ export function GameBoard({ word }: Props) {
 
         return (
           <Guess
-            guessCount={guesses.length}
             guess={guesses[i] || fallback}
             word={word}
             key={i}
