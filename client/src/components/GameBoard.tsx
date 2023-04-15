@@ -10,15 +10,10 @@ interface Props {
 }
 //
 export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
-
   const [guess, setGuess] = useState({ word: "", submitted: false });
-  
-  const [win, setWin] = useState(false);
-  const [lost, setLost] = useState(false);
   let hasBeenUsed = false;
 
   useEffect(() => {
-    
     const keyEvents: (event: KeyboardEvent) => void = (ev) => {
 
       if (ev.key.length === 1 && guess.word.length < word.length) {

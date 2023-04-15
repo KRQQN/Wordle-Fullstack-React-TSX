@@ -14,7 +14,7 @@ function App() {
   //TODO: store guesses, fix userinput, check win/lose, add time.
 
   useEffect(() => {
-    loadWordPref(wordLength, reccuringChars).then((data) => setWord(data));
+    loadWordPref(wordLength, reccuringChars).then((data) => setWord(data.toLocaleLowerCase()));
     setGuesses([])
   }, [wordLength, reccuringChars]);
   
@@ -23,6 +23,14 @@ function App() {
     setGuesses([]);
   };
   
+
+  if(guesses[guesses.length -1]?.word === word) {
+    return (
+      <div>
+        <h1>you the best</h1>
+      </div>
+    )
+  } 
 
   return (
     <>
@@ -38,7 +46,7 @@ function App() {
 
 
       { /*TODO: remove p-tags*/ }
-      <p className="text-4xl font-extrabold" > correct word: {guesses.length > 4 && word}</p>
+      <p className="text-4xl font-extrabold" > correct word: {word}</p>
     </>
   );
 }
