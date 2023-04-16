@@ -15,7 +15,7 @@ export function WordOptions({
   onRecurringCharsChange,
 }: Props) {
   return (
-    <>
+    <div className="mb-8">
       <h1 className="text-2xl font-">Word Length</h1>
       <div className="mb-2 flex justify-center">
         <button
@@ -52,6 +52,6 @@ export function WordOptions({
           Reccuring Letters?
         </label>
       </div>
-    </>
+    </div>
   );
 }

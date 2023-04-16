@@ -1,7 +1,7 @@
 import {useState} from "react"
 
 interface Props {
-  guess: {word: string, submitted: boolean} ;
+  guess: {word: string, checked: boolean} ;
   word: string;
 }
 export function Guess({ guess, word }: Props) {
@@ -13,7 +13,7 @@ export function Guess({ guess, word }: Props) {
       {new Array(word.length).fill(0).map((_: string, i: number) => {
        let bg = "bg-orange-400"
 
-        if(guess.submitted === true) {
+        if(guess.checked === true) {
           if(guess.word[i] === word[i]) {
             bg = "bg-green-400"
     

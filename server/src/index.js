@@ -30,12 +30,13 @@ app.get("/api/wordOptions", (req, res) => {
     .json(filteredWords[Math.floor(Math.random() * filteredWords.length)]);
 });
 
-app.get("/highScores", async (req, res) => {
+app.get("/api/highScores", async (req, res) => {
   res.status(200);
 });
 
-app.post("api/submitHighScore", async (req, res) => {
-  res.status(200);
+app.post("/api/highScores", async (req, res) => {
+  console.log(req.body)
+  res.status(200).json({ response: req.body})
 });
 
 app.listen(5080, () => {});

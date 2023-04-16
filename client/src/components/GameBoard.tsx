@@ -4,28 +4,28 @@ import { Guess } from "./Guess";
 interface Props {
   word: string;
   onGuessReset: () => void //TODO: remove this later
-  guesses: { word: string; submitted: boolean }[]
-  setGuesses: (guesses: { word: string; submitted: boolean }[]) => void;
+  guesses: { word: string; checked: boolean }[]
+  setGuesses: (guesses: { word: string; checked: boolean }[]) => void;
 
 }
-//
+//gsdsdddsdfgsssss
 export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
-  const [guess, setGuess] = useState({ word: "", submitted: false });
+  const [guess, setGuess] = useState({ word: "", checked: false });
   let hasBeenUsed = false;
 
   useEffect(() => {
-    const keyEvents: (event: KeyboardEvent) => void = (ev) => {
+    const handleKeyEvents: (event: KeyboardEvent) => void = (ev) => {
 
       if (ev.key.length === 1 && guess.word.length < word.length) {
         setGuess({
           word: guess.word.concat(ev.key.toLocaleLowerCase()),
-          submitted: false,
+          checked: false,
         });
       }
 
       if (ev.key === "Enter" && guess.word.length === word.length) {
-        setGuesses([...guesses, { word: guess.word, submitted: true }]);
-        setGuess({ word: "", submitted: false });
+        setGuesses([...guesses, { word: guess.word, checked: true }]);
+        setGuess({ word: "", checked: false });
       }
       //TODO: remove this later
       if (ev.key === "Escape") {
@@ -33,31 +33,31 @@ export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
       }
 
       if (ev.key === "Backspace") {
-        setGuess({ word: guess.word.slice(0, -1), submitted: false });
+        setGuess({ word: guess.word.slice(0, -1), checked: false });
       }
     };
 
-    window.addEventListener("keyup", keyEvents);
+    window.addEventListener("keyup", handleKeyEvents);
     return () => {
-      window.removeEventListener("keyup", keyEvents);
+      window.removeEventListener("keyup", handleKeyEvents);
     };
   }, [guess, guesses]);
 
   return (
     <>
       {new Array(6).fill("").map((_: string, i: number) => {
-        let fallback: { word: string; submitted: boolean } = {
+        let uncheckedGuess: { word: string; checked: boolean } = {
           word: "",
-          submitted: false,
+          checked: false,
         };
         if (!hasBeenUsed && i >= guesses.length) {
           hasBeenUsed = true;
-          fallback = { word: guess.word, submitted: false };
+          uncheckedGuess = { word: guess.word, checked: false };
         }
 
         return (
           <Guess
-            guess={guesses[i] || fallback}
+            guess={guesses[i] || uncheckedGuess}
             word={word}
             key={i}
           />
