@@ -1,19 +1,30 @@
 import express from "express";
 import words from "./wordBank.js";
 import CharsReccuring from "./CharsReccuring.js";
-
-//app.use(expressLayouts);
+import expressEjsLayouts from "express-ejs-layouts";
 
 const app = express();
+
+app.use(expressEjsLayouts);
 app.use(express.json());
 
-app.set("layout", "../views/layouts/layout.ejs");
+app.set("layout", "../views/layouts/index.ejs");
 app.set("view engine", "ejs");
-app.use(express.static("../client/dist"));
+app.use(express.static("./dist"));
 
-/* app.get("/", (req, res) => {
-  res.status(200);
-}); */
+
+app.get("/", (req, res) => {
+    res.status(200).render("home");
+})
+app.get("/about", (req, res) => {
+    res.status(200).render("about");
+})
+app.get("/higscores", (req, res) => {
+    res.status(200).render("highscores");
+})
+
+
+
 
 app.get("/api/wordOptions", (req, res) => {
   //TODO: fix fetch to include reccuringChars

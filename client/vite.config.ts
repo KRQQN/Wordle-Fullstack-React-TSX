@@ -10,10 +10,8 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  /* module.exports = {
-    root: 'src',
     build: {
-      outDir: '../dist'
+      outDir: '../server/dist'
     }
-  } */
+  
 })
