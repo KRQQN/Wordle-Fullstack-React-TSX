@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useEffect, useState } from "react";
 import { Guess } from "./Guess";
 
 interface Props {
@@ -13,7 +13,7 @@ export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
   const [guess, setGuess] = useState({ word: "", checked: false });
   let hasBeenUsed = false;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleKeyEvents: (event: KeyboardEvent) => void = (ev) => {
 
       if (ev.key.length === 1 && guess.word.length < word.length) {
@@ -41,7 +41,7 @@ export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
     return () => {
       window.removeEventListener("keyup", handleKeyEvents);
     };
-  }, [guess, guesses]);
+  }, [guess, guesses, word]);
 
   return (
     <>

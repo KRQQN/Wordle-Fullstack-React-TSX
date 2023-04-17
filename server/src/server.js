@@ -7,13 +7,13 @@ import CharsReccuring from "./CharsReccuring.js";
 const app = express();
 app.use(express.json());
 
-/* app.set("layout", "../views/layouts/layout.ejs");
+app.set("layout", "../views/layouts/layout.ejs");
 app.set("view engine", "ejs");
-app.use("/static", express.static("./static")); */
+app.use(express.static("../client/dist"));
 
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   res.status(200);
-});
+}); */
 
 app.get("/api/wordOptions", (req, res) => {
   //TODO: fix fetch to include reccuringChars
@@ -39,4 +39,4 @@ app.post("/api/highScores", async (req, res) => {
   res.status(200).json({ response: req.body})
 });
 
-app.listen(5080, () => {});
+export default app;

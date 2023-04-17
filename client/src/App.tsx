@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { WordOptions } from "./components/WordOptions";
 import { GameBoard } from "./components/GameBoard";
-import loadWordPref from "./tsx/loadWordPref";
-import "./App.css";
+import loadWordPref from "./scripts/loadWordPref";
 import { Guess } from "./components/Guess";
+import "./App.css";
 
 function App() {
   const [name, setName] = useState("");
