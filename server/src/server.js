@@ -19,15 +19,15 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
     res.status(200).render("about");
 })
-app.get("/higscores", (req, res) => {
-    res.status(200).render("highscores");
+app.get("/highscores", (req, res) => {
+    res.status(200).render("highscore");
 })
 
 
 
 
 app.get("/api/wordOptions", (req, res) => {
-  //TODO: fix fetch to include reccuringChars
+  
 
   const filteredWords =
     req.query.recurringChars === "true"
