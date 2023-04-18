@@ -9,7 +9,7 @@ const app = express();
 Db.dbInit();
 app.use(expressEjsLayouts);
 app.use(express.json());
-app.use(express.static("./dist"));
+app.use(express.static("./dist/"));
 
 app.set("layout", "../views/layouts/index.ejs");
 app.set("view engine", "ejs");
@@ -21,8 +21,9 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
     res.status(200).render("about");
 })
-app.get("/highscores", (req, res) => {
-    res.status(200).render("highscore");
+app.get("/highscores", async (req, res) => {
+    const hs = await Db.getDbCollection(HighScore)
+    res.status(200).render("highscore", { data: hs})
 })
 
 app.get("/api/wordOptions", (req, res) => {
@@ -45,7 +46,7 @@ app.get("/api/highScores", async (req, res) => {
 app.post("/api/highScores", async (req, res) => {
   const { name, time, wordLength} = req.body
   Db.postDbModel(HighScore, { name, time, wordLength})
-  res.status(200).json({ response: req.body})
+  res.status(200).json({ data: req.body})
 });
 
 export default app;
