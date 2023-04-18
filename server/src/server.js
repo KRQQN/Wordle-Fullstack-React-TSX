@@ -2,19 +2,17 @@ import express from "express";
 import words from "./wordBank.js";
 import CharsReccuring from "./CharsReccuring.js";
 import expressEjsLayouts from "express-ejs-layouts";
-import Db from "./db.js";
 import { HighScore } from "./models/dbModels.js";
+import Db from "./db.js";
 
-
-Db.dbInit();
 const app = express();
-
+Db.dbInit();
 app.use(expressEjsLayouts);
 app.use(express.json());
+app.use(express.static("./dist"));
 
 app.set("layout", "../views/layouts/index.ejs");
 app.set("view engine", "ejs");
-app.use(express.static("./dist"));
 
 
 app.get("/", (req, res) => {
@@ -27,19 +25,13 @@ app.get("/highscores", (req, res) => {
     res.status(200).render("highscore");
 })
 
-
-
-
 app.get("/api/wordOptions", (req, res) => {
-  
-
   const filteredWords =
     req.query.recurringChars === "true"
       ? words.filter((word) => word.length === parseInt(req.query.wordLength))
       : words.filter(
           (word) => word.length === parseInt(req.query.wordLength) && !CharsReccuring(word)
         );
-
   res
     .status(200)
     .json(filteredWords[Math.floor(Math.random() * filteredWords.length)]);
@@ -47,16 +39,12 @@ app.get("/api/wordOptions", (req, res) => {
 
 app.get("/api/highScores", async (req, res) => {
   const hs = await Db.getDbCollection(HighScore)
-  res.status(200).json(hs.json);
+  res.status(200).json(hs);
 });
 
-/* name: String,
-    score: Number,
-    wordLength: Number, */
 app.post("/api/highScores", async (req, res) => {
-  const { name, score, wordLength} = req.body
-  console.log(req.body)
-  Db.postDbModel(HighScore, { name, score, wordLength})
+  const { name, time, wordLength} = req.body
+  Db.postDbModel(HighScore, { name, time, wordLength})
   res.status(200).json({ response: req.body})
 });
 

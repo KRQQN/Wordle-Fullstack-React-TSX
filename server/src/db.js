@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 export default {
 
     dbInit: async () => {
-        await mongoose.connect("mongodb://127.0.0.1:27017/test")
+        await mongoose.connect("mongodb://127.0.0.1:27017")
     }, //process.env.MONGODB_URL
 
     getDbCollection: async (model) => {
