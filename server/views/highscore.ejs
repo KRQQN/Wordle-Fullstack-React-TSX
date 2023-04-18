@@ -1,11 +1,11 @@
-<div class="mx-auto w-1/2 bg-orange-400 pt-12">
+<div class="mt-6 mx-auto w-1/2 flex flex-col justify-center items-center bg-orange-400">
     <h1 class="text-4xl">HIGHSCORES</h1>
     <ul class="bg-slate-600">
         <% data.forEach(data => { %>
-            <li class="m-20 flex justify-between space-x-5 bg-black"> 
+            <li class="flex"> 
                 <p class="text-2xl"><%= data.name %></p>
-                <p><%= data.time %>s</p>
-                <p><%= data.wordLength %></p>
+                <p class="text-2xl"><%= data.time %>s</p>
+                <p class="text-2xl"><%= data.wordLength %></p>
 
                 
             </li>
