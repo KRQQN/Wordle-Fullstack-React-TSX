@@ -2,7 +2,11 @@ import express from "express";
 import words from "./wordBank.js";
 import CharsReccuring from "./CharsReccuring.js";
 import expressEjsLayouts from "express-ejs-layouts";
+import Db from "./db.js";
+import { HighScore } from "./models/dbModels.js";
 
+
+Db.dbInit();
 const app = express();
 
 app.use(expressEjsLayouts);
@@ -42,11 +46,17 @@ app.get("/api/wordOptions", (req, res) => {
 });
 
 app.get("/api/highScores", async (req, res) => {
-  res.status(200);
+  const hs = await Db.getDbCollection(HighScore)
+  res.status(200).json(hs.json);
 });
 
+/* name: String,
+    score: Number,
+    wordLength: Number, */
 app.post("/api/highScores", async (req, res) => {
+  const { name, score, wordLength} = req.body
   console.log(req.body)
+  Db.postDbModel(HighScore, { name, score, wordLength})
   res.status(200).json({ response: req.body})
 });
 
