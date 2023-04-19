@@ -7,3 +7,6 @@
 # Server 
 * npm install
 * npm start
+
+# Env
+* MONGODB_URL
