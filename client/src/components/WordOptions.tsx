@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,8 +13,8 @@ export function WordOptions({
   onRecurringCharsChange,
 }: Props) {
   return (
-    <div className="mb-8">
-      <h1 className="text-2xl font-">Word Length</h1>
+    <div className="mb-8 flex flex-col">
+      <h1 className="text-2xl ">Word Length</h1>
       <div className="mb-2 flex justify-center">
         <button
           className="w-20 leading-none rounded-sm font-extrabold text-2xl bg-orange-400"
