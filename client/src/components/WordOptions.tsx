@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-interface Props {
+interface wordOptionsProps {
   wordLength: number;
   onWordLengthChange: (wl: number) => void;
   onRecurringCharsChange: (rc: boolean) => void;

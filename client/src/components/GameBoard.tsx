@@ -1,14 +1,14 @@
 import { useLayoutEffect, useEffect, useState } from "react";
 import { Guess } from "./Guess";
 
-interface Props {
+interface gameBoardProps {
   word: string;
-  onGuessReset: () => void //TODO: remove this later
+  onGuessReset: () => void 
   guesses: { word: string; checked: boolean }[]
   setGuesses: (guesses: { word: string; checked: boolean }[]) => void;
 
 }
-//gsdsdddsdfgsssss
+
 export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
   const [guess, setGuess] = useState({ word: "", checked: false });
   let hasBeenUsed = false;
@@ -27,7 +27,7 @@ export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
         setGuesses([...guesses, { word: guess.word, checked: true }]);
         setGuess({ word: "", checked: false });
       }
-      //TODO: remove this later
+  
       if (ev.key === "Escape") {
         onGuessReset()
       }

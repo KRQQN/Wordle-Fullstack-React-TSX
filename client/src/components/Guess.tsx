@@ -1,6 +1,6 @@
 import {useState} from "react"
 
-interface Props {
+interface guessProps {
   guess: {word: string, checked: boolean} ;
   word: string;
 }

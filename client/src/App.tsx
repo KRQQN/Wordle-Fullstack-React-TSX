@@ -34,7 +34,7 @@ function App() {
     setEndTime(undefined);
   }, [wordLength, recurring]);
 
-  //TODO: remove this later
+ 
   const handleGuessReset = () => {
     setGuesses([]);
   };
@@ -92,7 +92,6 @@ function App() {
           />
           <button
             className="h-10 wx-auto bg-red-400"
-            onClick={(ev) => {}}
             type="submit"
           >
             SUBMIT
