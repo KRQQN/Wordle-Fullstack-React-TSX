@@ -9,7 +9,7 @@ interface gameBoardProps {
 
 }
 
-export function GameBoard({ word, onGuessReset , guesses, setGuesses}: Props) {
+export function GameBoard({ word, onGuessReset , guesses, setGuesses}: gameBoardProps) {
   const [guess, setGuess] = useState({ word: "", checked: false });
   let hasBeenUsed = false;
 

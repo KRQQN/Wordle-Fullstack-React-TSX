@@ -4,7 +4,7 @@ interface guessProps {
   guess: {word: string, checked: boolean} ;
   word: string;
 }
-export function Guess({ guess, word }: Props) {
+export function Guess({ guess, word }: guessProps) {
   const [charsInWord, setCharsInWord] = useState(word.split(""))
   const unMatchedChars = word.split("").filter((e, i) => e != guess.word.split("")[i]);
 

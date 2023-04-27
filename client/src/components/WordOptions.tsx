@@ -11,7 +11,7 @@ export function WordOptions({
   wordLength,
   onWordLengthChange,
   onRecurringCharsChange,
-}: Props) {
+}: wordOptionsProps) {
   return (
     <div className="mb-8 flex flex-col">
       <h1 className="text-2xl ">Word Length</h1>
